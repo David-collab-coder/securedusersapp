@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: usersapp
+  datasource:
+    url: jdbc:postgresql://localhost:5400/usersdb
+    username: david
+    password: 1234
+  profiles:
+    active:
+      - testData
+
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    open-in-view: false
+server:
+  port: 9001
+  tomcat:
+    threads:
+      max: 50
+      min-spare: 5
+    connection-timeout: 3s
+
+

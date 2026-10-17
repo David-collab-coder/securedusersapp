@@ -1,0 +1,19 @@
+services:
+  postgres:
+    image: 'postgres:17.1-alpine'
+    environment:
+      - 'POSTGRES_DB=usersdb'
+      - 'POSTGRES_PASSWORD=1234'
+      - 'POSTGRES_USER=david'
+    ports:
+      - '5400:5432'
+    volumes:
+      - postgres_data:/var/libs/postgresql/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL","ps_isready -U davidr  -d usersdb"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+volumes:
+  postgres_data:
